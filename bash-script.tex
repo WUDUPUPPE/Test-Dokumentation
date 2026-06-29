@@ -1,0 +1,36 @@
+\section*{Bash-Script}
+
+Ist eine Textdatei die Befehle nacheinander ausführt und das Script so wieder verwendbar macht und Routine arbeiten automatisieren kann.
+
+\begin{itemize}
+  \item Es ist wie ein kleines Programm und wir bei \texttt{Unix}artigen Systemen verwendet
+  \item Grundlegender Aufbau:
+  \begin{itemize}
+    \item \textbf{Shebang:} \texttt{\#!/bin/bash} teilt dem System mit welcher Interpreter verwendet werden soll zum ausführen des Codes.
+    \item \textbf{Kommentare:} Sie werden verwendet mit \texttt{\#} um Code Informationen im Script für denn Menschen verständlich zu machen und wird vom System ignoriert.
+    \item \textbf{Befehle:} Sind Systembefehle die nacheinander abgespielt werden und somit ein Abfolge von Aufgaben erledigen
+  \end{itemize}
+\end{itemize}
+
+\begin{verbatim}
+#!/bin/bash
+
+# Dies ist ein Kommentar. Das Skript gibt eine Begrüßung aus.
+echo "Hallo! Ich automatisiere jetzt deine Aufgabe."
+
+# Eine Variable wird definiert und verwendet
+BENUTZER=$(whoami)
+echo "Du bist angemeldet als: $BENUTZER"
+
+# Es wird geprüft, ob ein Ordner existiert, und ggf. angelegt
+ORDNER="mein_backup_ordner"
+
+if [ ! -d "$ORDNER" ]; then
+    mkdir "$ORDNER"
+    echo "Der Ordner '$ORDNER' wurde erfolgreich erstellt."
+else
+    echo "Der Ordner '$ORDNER' existiert bereits."
+fi
+\end{verbatim}
+
+Es gibt genau so wichtige Bausteine wie in anderen Programmen bzw. Code wie \textbf{Variablen}, \textbf{Argumente}, \textbf{Bedingungen} und \textbf{Schleifen}.
