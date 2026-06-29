@@ -1,0 +1,41 @@
+# LaTeX build files hiermit ignorieren
+*.aux
+*.log
+*.toc
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.lof
+*.lot
+*.idx
+*.ind
+*.ilg
+*.glg
+*.glo
+*.gls
+*.acn
+*.acr
+*.alg
+
+# LaTeX build output (wird von GitHub Actions erzeugt)
+*.pdf
+
+# macOS Systemmüll
+.DS_Store
+**/.DS_Store
+
+# VS Code / Editor
+.vscode/
+
+# Versteckte Temp-Dateien
+*~
+*.swp
+
+# Build-Ordner falls du später einen nutzt
+build/
+out/
