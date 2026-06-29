@@ -1,0 +1,36 @@
+\section*{Makefile}
+
+Es ist eine Steuerungsdatei für das Programm \texttt{make}, wird benötigt um in der Entwicklung Build Prozesse zu automatisieren.
+
+\begin{itemize}
+  \item Es spart mir die Befehle einzeln mühselig immer einzugeben und macht so denn Build reproduzierbar ohne großen Aufwand
+  \item Sie werden mit einfachen Befehlen in einer lesbaren Struktur definiert
+\end{itemize}
+
+Die Makefile besteht aus sogenannten Befehlen mit folgender Struktur:
+
+\begin{verbatim}
+# Ein praktisches Beispiel (C/C++)
+
+# Das erste Ziel ist das Standardziel, wenn man nur 'make' aufruft
+app: main.o hilfe.o
+	g++ -o app main.o hilfe.o
+
+# Regel zum Erstellen von main.o
+main.o: main.cpp hilfe.h
+	g++ -c main.cpp
+
+# Regel zum Erstellen von hilfe.o
+hilfe.o: hilfe.cpp hilfe.h
+	g++ -c hilfe.cpp
+
+# Hilfsziel: Aufräumen (kann mit 'make clean' aufgerufen werden)
+clean:
+	rm -f app main.o hilfe.o
+\end{verbatim}
+
+\begin{itemize}
+  \item \textbf{Ziel:} Name der Aktion
+  \item \textbf{Abhängigkeit:} Dateien oder andere Ziele
+  \item \textbf{Befehle:} Der Shell-Befehl der ausgeführt wird
+\end{itemize}

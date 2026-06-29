@@ -1,108 +1,24 @@
-\documentclass[12pt, a4paper]{article}
+\documentclass[a4paper,12pt]{article}
 
-% --- Pakete für Sprache und Schrift ---
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
-\usepackage{lmodern} % Moderne, saubere Schriftart
-\renewcommand{\familydefault}{\sfdefault} % Serifenlose Schrift (wirkt moderner für technische Dokus)
-
-% --- Pakete für Layout und Bilder ---
-\usepackage{fancyhdr}
-\usepackage{graphicx}
-\usepackage{geometry}
-\geometry{a4paper, top=3cm, bottom=2cm, left=3cm, right=3cm} % mehr Platz oben für Kopfzeile
-\usepackage{setspace}
-\onehalfspacing % 1,5 facher Zeilenabstand (Standard IHK)
-
-% --- Kopf- und Fußzeilen einrichten (gilt für alle Seiten außer Titelseite) ---
-\pagestyle{fancy}
-\fancyhf{} 
-
-% Kopfzeile
-\fancyhead[L]{%
-  \textbf{\MakeUppercase{STEMgraph}}\\
-  Automatisierte Abhängigkeitsauflösung von Lern-Repositories mittels Bash und Git%
-}
-\fancyhead[R]{%
-  \raisebox{1\height}{\includegraphics[height=0.47cm]{Bilder/AutoInternLogo.png}}%
-}
-
-% Linien
-\renewcommand{\headrulewidth}{0.4pt}  % Linie unter der Kopfzeile
-\renewcommand{\footrulewidth}{0.4pt}  % NEU: Linie über der Fußzeile
-
-% Fußzeile: Name links, Seitenzahl mittig
-\fancyfoot[L]{Tejani Ken Awudu Mohammed}   % NEU
-\fancyfoot[C]{\thepage}                    % wie bisher
-
-\setlength{\headheight}{0.8cm} % Erhöht den Platz für die Kopfzeile (wegen Logo)
-\setlength{\footskip}{0.9cm}   % Erhöht den Abstand zwischen Text und Fußzeile (wegen zusätzlicher Linie)
-
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{verbatim}
 
 \begin{document}
 
-% --- Titelseite ohne Kopf- und Fußzeile ---
-\begin{titlepage}
-\newgeometry{top=1cm,bottom=2.5cm,left=3cm,right=3cm} % NEU: eigene Ränder NUR für die Titelseite
-\thispagestyle{empty}
-\centering
-
-\vspace*{\fill} % Start vertikale Zentrierung
-
-% 1. IHK Logo oben mittig
-\includegraphics[width=6.5cm]{Bilder/IHKlogo.png} \\ % Höhe/Breite bei Bedarf anpassbar
-\vspace{-1.2cm}
-
-% 2. Art der Prüfung und Beruf
-{\Large \textbf{Abschlussprüfung Winter 2026}} \\ 
-\vspace{0.5cm}
-{\large Fachinformatiker für Anwendungsentwicklung} \\
-\vspace{0.8cm}
-
-% 3. Art des Dokuments
-{\Large Dokumentation zur betrieblichen Projektarbeit} \\
-\vspace{1.5cm}
-
-% 4. Projekttitel
-{\LARGE \textbf{STEMgraph}} \\ 
-\vspace{1cm}
-{\Large \textbf{Automatisierte Abhängigkeitsauflösung von Lern-Repositories mittels Bash und Git}} \\ 
-\vspace{1.5cm}
-
-% 5. Abgabedatum
-{\large Abgabedatum: Essen, den TT.MM.JJJJ} \\
-\vspace{1.2cm}
-
-% 6. Persönliche Daten
-{\large \textbf{Prüfungsbewerber:}} \\
-Tejani Ken Awudu Mohammed \\
-Hauptstraße 67 \\
-45879 Gelsenkirchen \\
-\vspace{1.2cm}
-
-% 7. Betriebsdaten
-{\large \textbf{Ausbildungsbetrieb:}} \\
-Auto-Intern GmbH \\
-Gebäude B/29, Hernerstr. 299 \\
-44809 Bochum \\
-\vspace{1cm}
-
-% 8. Betriebslogo
-\includegraphics[width=7cm]{Bilder/AutoInternLogo.png} 
-
-\vspace*{\fill} % Ende vertikale Zentrierung
-
-\end{titlepage}
-\restoregeometry % NEU: ab hier wieder die normalen Ränder für den Rest
-% --- Ab hier gelten die Kopf-/Fußzeilen automatisch ---
-
 \tableofcontents
-\clearpage
+\newpage
 
 \input{praktikum-aufgaben.tex}
 \input{artefakte.tex}
 \input{artikel-sammlung.tex}
+\input{offene-fragen.tex}
 
+\appendix
+\input{tagesberichte.tex}
 
 \end{document}

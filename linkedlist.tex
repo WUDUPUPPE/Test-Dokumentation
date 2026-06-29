@@ -1,0 +1,30 @@
+\section{LinkedList}
+Eine LinkedList ist eine Datenstruktur, die aus Knoten besteht, die miteinander verbunden sind. Jeder Knoten enthält Daten und einen Verweis auf den nächsten Knoten in der Liste. Es gibt verschiedene Arten von LinkedLists, darunter Singly LinkedLists und Doubly LinkedLists.
+
+\subsection{Singly LinkedList}
+Die Singly LinkedList ist die einfachste Variante, bei der jedes Element auf das nächste Element zeigt
+
+\begin{verbatim}
+// Singly LinkedList
+struct node{
+int data;
+struct node* link;
+};
+\end{verbatim}
+
+\subsection{Doubly LinkedList}
+Die Doubly LinkedList ist die Variante, bei der das erste Element mit Null startet, dann die Data kommt und zusätzlich Next und Prev vorhanden sind. Dadurch werden einige Dinge ermöglicht.
+
+\begin{verbatim}
+// Doubly LinkedLink
+struct node{
+struct node* prev;
+int data;
+struct node* next;
+};
+\end{verbatim}
+
+\subsubsection{Doubly LinkedList}
+Die Doubly Linked List ist deutlich effizienter als eine Array List und braucht weniger Rechenleistung. Sie ist für das Projekt passend, da jedes Element direkt weiß, wer seine direkten Nachbarn sind. Wenn neue Elemente an einer Stelle dazukommen, müssen nur Next und Prev neu ausgerichtet werden.
+Eine Node enthält die Data und zeigt mit einem Pointer auf die nächste Data. Sie ist um Beziehungen in Programmen darzustellen optimal.
+Ein Nachteil ist, dass bei einer Stelle weiter hinten in der Liste die komplette Liste durchlaufen werden muss, um genau dort ein Element einzufügen.

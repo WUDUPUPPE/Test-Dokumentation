@@ -1,0 +1,22 @@
+\section{Neo4j}
+
+Neo4j ist eine Graphdatenbank, die durch Beziehungen aneinander gekoppelt wird und durch Typen beziehungsweise Labels gruppiert werden kann. Dadurch entsteht eine Abhängigkeit zwischen den Daten.
+Es wird erst ein Knotentyp bestimmt, der sagt, zu welcher Kategorie der Knoten gehört, zum Beispiel Person oder Essen. Danach folgen die Eigenschaften, in denen ein Value als String oder Integer stehen kann. Man ist nicht auf eine Eigenschaft beschränkt.
+
+\begin{verbatim}
+create (l:Linux {challange:"Linux CLI", keyword:"cli", keyword:"linux"}) return l
+\end{verbatim}
+
+Wenn man zwei Challenge-Node's erstellt hat, kann man sie mit einer Beziehung verknüpfen.
+
+\begin{verbatim}
+create (l)-[:linux]->(l2)
+create (l)<-[:linux]-(l2)
+\end{verbatim}
+
+Man könnte beim Erstellen von Edges auch neue Properties anlegen.
+
+\begin{verbatim}
+create (l)-[:linux{os:[Linux]}]->(l2)
+\end{verbatim}
+Die Edges können auch in beide Richtungen zeigen, was bei einer LinkedList der Fall ist. Es gibt auch die Möglichkeit, die Edges zu benennen, zum Beispiel mit "linux", um die Beziehung zu verdeutlichen.

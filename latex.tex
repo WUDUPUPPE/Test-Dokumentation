@@ -1,0 +1,22 @@
+\section{LaTeX}
+
+LaTeX ist ein Textsatzsystem, mit dem man Dokumente sauber und ordentlich aufbauen kann. Man schreibt dabei nicht direkt in das fertige Layout, sondern benutzt Befehle, aus denen später ein PDF erstellt wird.
+LaTeX basiert auf TeX und wurde von Leslie Lamport weiterentwickelt. Es ist vor allem dafür da, wissenschaftliche und technische Dokumente zu erstellen.
+Der Vorteil ist, dass man sich mehr auf den Inhalt konzentriert und LaTeX den Rest vom Layout übernimmt. Dadurch sieht das Dokument am Ende meistens sehr sauber aus.
+LaTeX arbeitet mit einer \texttt{.tex}-Datei. In diese Datei schreibt man Befehle, und daraus wird später ein PDF kompiliert.
+Der Aufbau ist immer ungefähr gleich:
+
+\begin{verbatim}
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\begin{document}
+
+\section{Einleitung}
+Dies ist mein LaTeX Beispiel.
+
+\end{document}
+\end{verbatim}
+In diesem Beispiel haben wir die Dokumentenklasse \texttt{article} gewählt, die für einfache Artikel geeignet ist. Es gibt auch andere Klassen wie \texttt{report} oder \texttt{book}, die für längere Dokumente gedacht sind.
