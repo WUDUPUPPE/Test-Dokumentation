@@ -1,5 +1,5 @@
-TEX = dokumentation.tex
-PDF = dokumentation.pdf
+TEX = test.tex
+PDF = test.pdf
 LATEXMK = latexmk
 
 .PHONY: all clean distclean open
