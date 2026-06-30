@@ -22,7 +22,7 @@ jobs:
           root_file: test.tex
 
       - name: PDF umbenennen
-        run: mv dokumentation.pdf STEMgraph-Projektdokumentation.pdf
+        run: mv test.pdf Testdokumentation.pdf
 
       - name: PDF als Artefakt speichern
         uses: actions/upload-artifact@v4
