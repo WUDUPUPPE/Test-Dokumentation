@@ -1,15 +1,21 @@
-\subsection{Query-Skripte}
+\subsection{1.6 Skripte und Automatisierung}
 
-Zu den von mir selbst produzierten Artefakten gehören vor allem die Query-Skripte. Diese Skripte dienen dazu, bestimmte Daten gezielt aus dem Projektkontext abzufragen und weiterzuverarbeiten. Zu jedem Artefakt habe ich eine eigene Doku erstellt, damit nachvollziehbar bleibt, was das Artefakt macht und warum es gebraucht wird.
+Ein wichtiger Teil meiner Arbeit im Praktikum waren die selbst erstellten Skripte. Dabei ging es nicht nur darum, irgendwelche Befehle nacheinander auszuführen, sondern darum, wiederkehrende Aufgaben im Projekt so zu automatisieren, dass ich sie später reproduzierbar und sauber weiterverwenden kann. Gerade für STEMgraph war das wichtig, weil ich mit den Repositories und den darin enthaltenen Metadaten arbeiten musste.
 
-\subsubsection{Ziel der Query-Skripte}
+Die Skripte habe ich so aufgebaut, dass sie mir beim Verarbeiten der Challenges helfen. Dabei werden vorhandene Repositories durchlaufen, relevante Informationen aus den README-Dateien gelesen und Abhängigkeiten rekursiv weiterverarbeitet. Genau dadurch entsteht später die Basis, um aus den einzelnen Repositories einen zusammenhängenden Graphen aufzubauen.
 
-Die Query-Skripte helfen dabei, strukturierte Daten aus dem Projekt gezielt auszulesen. Sie sind vor allem dafür gedacht, wiederkehrende Abfragen zu vereinfachen und den Zugriff auf relevante Informationen reproduzierbar zu machen. Dadurch lassen sich Daten schneller prüfen und weiterverwenden.
+Besonders wichtig war für mich dabei, dass die Skripte nicht nur technisch funktionieren, sondern auch nachvollziehbar bleiben. Deshalb habe ich die Abläufe so dokumentiert, dass ich später genau erklären kann, was jedes Script macht und warum ich es so umgesetzt habe. Das ist für die Projektdokumentation wichtig, weil ich damit zeigen kann, wie aus einzelnen Dateien und Metadaten ein verwertbarer Gesamtzusammenhang entsteht.
 
-\subsubsection{Doku zu den Artefakten}
+\subsubsection{get\_all\_challenges.sh}
 
-Die Doku zu den Artefakten soll jeweils erklären, wie das Artefakt aufgebaut ist, wofür es gebraucht wird und welchen Bezug es zu STEMgraph hat. Für mich ist wichtig, dass man die Funktion nicht nur am Code sieht, sondern auch an der Beschreibung versteht.
+Dieses Script filtert gültige UUIDs und speichert alle relevanten STEMgraph-Challenges lokal ab. Es legt die Repositories unter einem gemeinsamen Ordner ab, damit ich die benötigten Daten später weiterverarbeiten kann. Wichtig ist dabei, dass das Script reproduzierbar arbeitet und das Klonen sowie das Aktualisieren so automatisch wie möglich macht.
 
-\subsubsection{Bezug zu meinem Projekt}
+\subsubsection{get\_rekursiv\_challenges.sh}
 
-Die Skripte sind Teil der technischen Vorbereitung für STEMgraph. Sie helfen dabei, Daten aus den Repositories zu holen, zu sortieren und weiterzuverwenden. Genau das brauche ich später für die weitere Verarbeitung im Projekt.
+Hier geht es darum, die Abhängigkeiten wirklich als Graph zu denken. Ausgehend von einer Start-Challenge lese ich das Feld \texttt{depends\_on} aus und rufe mich für jede gefundene UUID wieder selbst auf. Damit ich dabei nicht in einer Endlosschleife lande oder dieselben Repos mehrfach hole, arbeite ich mit einer \texttt{VISITED}-Liste.
+
+\subsubsection{get\_subgraph\_challenges.sh}
+
+Mit diesem Script berechne ich einen Teilgraphen zwischen zwei Challenges. Dafür baue ich aus den lokalen Repositories zunächst einen Graphen im Speicher auf und hole mir aus den JSON-Kommentaren die relevanten Felder wie \texttt{id}, \texttt{teaches}, \texttt{keywords} und \texttt{depends\_on}. Aus diesen Informationen entsteht eine Struktur, mit der ich einen Pfad vom Startknoten zum Zielknoten finden kann.
+
+Die Skripte sind damit ein zentraler Bestandteil meiner praktischen Arbeit. Sie helfen mir nicht nur bei der technischen Umsetzung, sondern auch dabei, die Zusammenhänge im Projekt besser zu verstehen und später in der Dokumentation sauber zu erklären.
