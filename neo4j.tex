@@ -6,9 +6,7 @@ Es wird erst ein Knotentyp bestimmt, der sagt, zu welcher Kategorie der Knoten g
 \begin{verbatim}
 create (l:Linux {challange:"Linux CLI", keyword:"cli", keyword:"linux"}) return l
 \end{verbatim}
-
 Wenn man zwei Challenge-Node's erstellt hat, kann man sie mit einer Beziehung verknüpfen.
-
 \begin{verbatim}
 create (l)-[:linux]->(l2)
 create (l)<-[:linux]-(l2)
