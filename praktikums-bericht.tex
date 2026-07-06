@@ -372,7 +372,91 @@ Habe die neue Dokumentationsstruktur konkret in den vorhandenen Text eingebaut.
 Habe die neue Struktur der Projektdokumentation bis zum aktuellen Stand weiter fertig ausgearbeitet.
 
 \begin{itemize}
-    \item Die Dokumentation so vorbereitet, dass sie als zusammenhängender Projekttext lesbar ist und nicht nur einzelne technische Punkte auflistet.
-    \item Dabei darauf geachtet, dass die Gliederung die Arbeit mit den Skripten, dem Repository und der geplanten Weiterverwendung im Projekt sauber abbildet.
-    \item Um so eine deutlich klarere Grundlage geschaffen, auf der später Betreuer-Feedback und eine echte IHK-Dokumentation aufbauen können.
+  \item Die Dokumentation so vorbereitet, dass sie als zusammenhängender Projekttext lesbar ist und nicht nur einzelne technische Punkte auflistet.
+  \item Dabei darauf geachtet, dass die Gliederung die Arbeit mit den Skripten, dem Repository und der geplanten Weiterverwendung im Projekt sauber abbildet.
+  \item So eine deutlich klarere Grundlage geschaffen, auf der später Betreuer-Feedback und eine echte IHK-Dokumentation aufbauen können.
 \end{itemize}
+
+\subsubsection{30.06.26 - Dienstag}
+
+War die nächste Aufgabe mir einen lokalen \texttt{Neo4j} Server per \texttt{Docker} einzurichten und mich etwas mit dem Programm vertraut zu machen
+
+\begin{itemize}
+  \item Sollte ich \texttt{Portainer} nutzen aber kam zum Entschluss das es für mich nichtz notwendig ist
+  \item Hatte mich schon mal vor paar Wochen mit Youtube Videos für \texttt{Neo4j} auseinandergesetzt gehabt:
+    \begin{itemize}
+      \item \href{https://youtu.be/T6L9EoBy8Zk?si=zv2459hfS2osTfwN}{Neo4j in 100 Seconds}
+      \item \href{https://youtu.be/REVkXVxvMQE?si=PhiNwcv7IfhSqP7F}{What is a graph database? (in 10 minutes)}
+      \item \href{https://youtu.be/xKVA2gL8WHs?si=vl_GM4LRAZQXngy5}{What is Graph Database? | Neo4j Tutorial}
+      \item \href{https://youtu.be/8jNPelugC2s?si=W0dSuiQ8L1hrWGmZ}{Neo4j (Graph Database) Crash Course}
+      \item \href{https://youtu.be/P8VsJgbfWFw?si=x_abHF4SYK3pHdBG}{Neo4j IN 44 MINUTEN LERNEN [Full-HD] [Deutsch/German] Neo4j Crashkurs}
+    \end{itemize}
+\end{itemize}
+
+Ich sollte mir die Frage stellen:
+
+\begin{itemize}
+  \item Wie muss ein json strukturiert sein, dass es als Graph erkennbar ist.
+  \item Wie kannst du das in Neo4j reinladen
+  \item Mache eine Entscheidungsmatrix und vergleiche die beiden Optionen:
+    \begin{itemize}
+      \item Crawlen, json bauen, in neo4j laden, Frontend nutzt neo4j
+      \item Crawlen, json bauen, REST-API liefert direkt das json für den Graphen aus.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{01.07.26 - Mittwoch}
+
+Habe den lokalen Neo4j Server über Docker weiter eingerichtet und geprüft, ob der Container sauber läuft. 
+
+\begin{itemize}
+  \item Dafür habe ich die compose.yaml eingerichtet und mit denn typischen Docker services und denn volumes meiner wahl befüllt
+  \item Im Browser die Neo4j Oberfläche geöffnet und geguckt, wie di eeinzelnen Knoten, Beziehungen und Properties dargestellt werden. 
+  \item Habe erste einfache Abfragen ausprobiert, um ein Gefühl für die Oberfläche und die Query-Sprache zu bekommen.
+\end{itemize}
+
+\subsubsection{02.07.26 - Donnerstag}
+
+Heute habe ich ein erstes Test-Graphmodell für STEMgraph in Neo4j aufgebaut. 
+
+\begin{itemize}
+  \item Drei Challenge-Knoten mit \texttt{uuid}, \texttt{teaches}, \texttt{depends\_on} und \texttt{keywords} angelegt (Linux CLI Grundlagen, Dateien und Ordner verwalten, Makefile Grundlagen). 
+  \item Die Beziehungen mit \texttt{BUILDS\_ON} gesetzt, damit der Lernpfad technisch als Graph sichtbar wird.
+\end{itemize}
+
+Zusätzlich habe ich die \texttt{Neo4j} weiter ausgebaut und sie mit Daten aus der Graphdatenbank befüllt wie:
+
+\begin{itemize}
+  \item ein Datenmodell
+  \item Testdaten und Beziehungen
+  \item ein Graphdatenbank View
+  \item ein Neo4j Test
+\end{itemize}
+
+\subsubsection{03.07.26 - Freitag}
+
+Habe die Test-Challenges im Neo4j Browser abgefragt und mir die Abhängigkeiten im Graph angesehen. 
+
+\begin{itemize}
+  \item Gesehen, dass „Makefile Grundlagen“ auf „Dateien und Ordner verwalten“ aufbaut und diese wiederum auf „Linux CLI Grundlagen“ verweist. 
+  \item So überprüft, ob die \texttt{BUILDS\_ON}-Beziehungen wie geplant funktionieren und der Lernpfad korrekt dargestellt wird.
+\end{itemize}
+
+Danach habe ich eine neue Datei \texttt{JSON Struktur Notiz} für die Skizzierung der Struktur des Graphen angelegt mit:
+
+\begin{itemize}
+  \item \texttt{nodes} und \texttt{edges}, in der jede Challenge als Node mit \texttt{id}, \texttt{teaches} und \texttt{keywords} vorkommt.
+  \item Die Abhängigkeiten als \texttt{edges} über \texttt{source} und \texttt{target} abgebildet, damit später ein Graph-View im STEMgraph-Frontend möglich ist.
+\end{itemize}
+
+\subsection{}
+\subsubsection{06.07.26 - Montag}
+
+hatte ich dann gestartet in der CLI das \texttt{Bash-Script} auszuführen und mir die \texttt{graph-data.json} bauen zulassen. Dabei fiel mir auf:
+
+\begin{itemize}
+  \item das in machen \texttt{edges} normale Texte war anstatt denn erwarteten id´s hatte mich gewundert
+  \item hab meinen Chef gefragt ob das gewollt ist oder ob ich die weglassen soll 
+\end{itemize}
+
+Hab dann weiter gemacht mit der \texttt{JSON Struktur Notiz} und fertiggestellt um sie in die Test Doku einzufügen
