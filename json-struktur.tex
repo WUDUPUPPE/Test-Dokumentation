@@ -1,0 +1,28 @@
+\subsection{JSON-Struktur für den Graph}
+
+Damit man den STEMgraph später als Graph erkennen kann, brauche ich ein JSON, das
+genau zu meinem Datenmodell passt. Ich habe mir das so aufgebaut:
+
+\begin{verbatim}
+{
+  "nodes": [
+    { "id": "7392771207492170471730773974971",
+      "teaches": "Linux CLI Grundlagen", "keywords": ["linux", "cli"] },
+    { "id": "27498625678403678296478352674894",
+      "teaches": "Dateien und Ordner verwalten", "keywords": ["linux", "files", "mkdir"] },
+    { "id": "23684937628947256748937849374783",
+      "teaches": "Makefile Grundlagen", "keywords": ["makefile", "buildsystem"] }
+  ],
+  "edges": [
+    { "source": "7392771207492170471730773974971",
+      "target": "27498625678403678296478352674894" },
+    { "source": "27498625678403678296478352674894",
+      "target": "23684937628947256748937849374783" }
+  ]
+}
+\end{verbatim}
+Die \texttt{nodes} sind die Challenges mit meinen Feldern \texttt{id}, \texttt{teaches} und \texttt{keywords}.
+\\
+Die \texttt{edges} sind die Abhängigkeiten und bilden \texttt{depends\_on} ab, indem eine
+Challenge als \texttt{source} und die Challenge, die darauf aufbaut, als \texttt{target}
+eingetragen wird.
