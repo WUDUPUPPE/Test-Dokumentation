@@ -6,15 +6,16 @@
 \usepackage[ngerman]{babel}
 \usepackage{pifont} % Für Häkchen und Kreuze
 \usepackage{lmodern} % Moderne, saubere Schriftart
+\usepackage{enumitem} % Für Listenanpassungen
 \renewcommand{\familydefault}{\sfdefault} % Serifenlose Schrift (wirkt moderner für technische Dokus)
 
 % --- Pakete für Layout und Bilder ---
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{geometry}
-\geometry{a4paper, top=3cm, bottom=2cm, left=3cm, right=3cm} % mehr Platz oben für Kopfzeile
+\geometry{a4paper, top=1.8cm, bottom=2cm, left=1.5cm, right=1.5cm} % mehr Platz oben für Kopfzeile
 \usepackage{setspace}
-\onehalfspacing % 1,5 facher Zeilenabstand (Standard IHK)
+\singlespacing % 1,5 facher Zeilenabstand (Standard IHK)
 
 % --- Kopf- und Fußzeilen einrichten (gilt für alle Seiten außer Titelseite) ---
 \pagestyle{fancy}
@@ -40,7 +41,6 @@
 \setlength{\headheight}{1.1cm} % Erhöht den Platz für die Kopfzeile (wegen Logo)
 \setlength{\footskip}{0.9cm}   % Erhöht den Abstand zwischen Text und Fußzeile (wegen zusätzlicher Linie)
 
-
 \begin{document}
 
 % --- Titelseite ohne Kopf- und Fußzeile ---
@@ -52,24 +52,24 @@
 \vspace*{\fill} % Start vertikale Zentrierung
 
 % 1. IHK Logo oben mittig
-\includegraphics[width=6.5cm]{Bilder/IHKlogo.png} \\ % Höhe/Breite bei Bedarf anpassbar
-\vspace{-1.2cm}
+\includegraphics[width=7cm]{Bilder/IHKlogo.png} \\ % Höhe/Breite bei Bedarf anpassbar
+\vspace{-0.7cm}
 
 % 2. Art der Prüfung und Beruf
 {\Large \textbf{Abschlussprüfung Winter 2026}} \\ 
-\vspace{0.5cm}
+\vspace{1cm}
 {\large Fachinformatiker für Anwendungsentwicklung} \\
-\vspace{0.8cm}
+\vspace{1.3cm}
 
 % 3. Art des Dokuments
 {\Large Dokumentation zur betrieblichen Projektarbeit} \\
-\vspace{1.5cm}
+\vspace{2cm}
 
 % 4. Projekttitel
 {\LARGE \textbf{STEMgraph}} \\ 
 \vspace{1cm}
 {\Large \textbf{Automatisierte Abhängigkeitsauflösung von Lern-Repositories mittels Bash und Git}} \\ 
-\vspace{1.5cm}
+\vspace{2cm}
 
 % 5. Abgabedatum
 {\large Abgabedatum: Essen, den TT.MM.JJJJ} \\
@@ -106,6 +106,7 @@ Gebäude B/29, Hernerstr. 299 \\
 \input{artikel-sammlung.tex}
 \input{offene-fragen.tex}
 
+\newpage
 \appendix
 \input{praktikums-bericht.tex}
 

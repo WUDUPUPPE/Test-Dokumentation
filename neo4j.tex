@@ -1,12 +1,13 @@
 \subsection{Neo4j}
 
 Ist eine Graph Datenbank die durch Beziehungen(Edges) aneinander gekoppelt werden und durch denn Typen(Label) Gruppiert werden können und so mit eine Abhängigkeit darstellen.
-
+\\
 Es wird erst ein Knoten-Typ bestimmt, der quasi sagt zu welcher Kategorie der Knoten gehört und dann die Eigenschaften(Property) in de ein Value als String oder integer ist, mann ist nicht auf eine Eigenschaft beschränkt.
 
 \subsubsection{Beispiel}
+
 \begin{verbatim}
-create (l:Linux {challange:"Linux CLI", keyword:"cli"}) return l
+create (l:Linux {challange:"Linux CLI", keyword:"cli", keyword:"linux"}) return l
 \end{verbatim}
 
 \begin{itemize}
@@ -17,22 +18,23 @@ create (l:Linux {challange:"Linux CLI", keyword:"cli"}) return l
 create (l)-[:linux]->(l2)
 create (l)<-[:linux]-(l2)
 \end{verbatim}
-
-Man könnte natürlich auch beim erstellen von Edges auch neue Propertys anlegen:
+\begin{itemize}
+  \item Man könnte natürlich auch beim erstellen von Edges auch neue Propertys anlegen:
+\end{itemize}
 
 \begin{verbatim}
 create (l)-[:linux{os:[Linux]}]->(l2)
 \end{verbatim}
 
-\subsection{Test-Graphmodell des STEMgraph-Projekts}
+\subsubsection{Test-Graphmodell des STEMgraph-Projekts}
 
 \subsubsection*{1. Datenmodell}
 
-\begin{itemize}
+\begin{itemize}[itemsep=2pt]
   \item id: Identifizierung der Challenge
-  \item teaches: Was wird gelehrt
-  \item depends_on: Wovon hängt sie ab
-  \item keywords: Welche Themen sind vorhanden
+  \item teaches: Was wird gelehrt?
+  \item depends\_on: Wovon hängt sie ab?
+  \item keywords: Welche Themen sind vorhanden?
 \end{itemize}
 
 \subsubsection*{2. Testdaten und Beziehungen}
@@ -40,40 +42,47 @@ create (l)-[:linux{os:[Linux]}]->(l2)
 \begin{verbatim}
 CREATE
 (a:Challenge{
-    uuid: "7392771207492170471730773974971",
-    teaches: "Linux CLI Grundlagen",
-    depends_on: [],
-    keywords: ["ClI", "Linux"]
+    uuid: "7392771207492170471730773974971", teaches: "Linux CLI Grundlagen",
+    depends_on: [], keywords: ["ClI", "Linux"]
 }),
 (b:Challenge{
-    uuid: "27498625678403678296478352674894",
-    teaches: "Dateien und Ordner verwalten",
-    depends_on: ["7392771207492170471730773974971"],
-    keywords: ["files", "linux"]
+    uuid: "27498625678403678296478352674894", teaches: "Dateien und Ordner verwalten",
+    depends_on: ["7392771207492170471730773974971"], keywords: ["files", "linux"]
 }),
 (c:Challenge{
-    uuid: "23684937628947256748937849374783",
-    teaches: "Makefile Grundlagen",
-    depends_on: ["27498625678403678296478352674894"],
-    keywords: ["makefile", "build"]
+    uuid: "23684937628947256748937849374783", teaches: "Makefile Grundlagen",
+    depends_on: ["27498625678403678296478352674894"], keywords: ["makefile", "build"]
 }),
 (b)-[:BUILDS_ON]->(a),
 (c)-[:BUILDS_ON]->(b)
 \end{verbatim}
 
-\subsubsection*{3. Graphdatenbank View}
+\subsubsection*{3. Graph-Datenbank View}
 
-
+\begin{figure}[htbp]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=6cm]{Bilder/Neo4j_Challenges.jpg}
+    \caption{Challenges}
+    \label{fig:bild1}
+  \end{minipage}
+  \hfill % Fügt automatisch den maximalen Abstand zwischen den Bildern ein
+  \begin{minipage}[b]{0.45\textwidth}
+    \centering
+    \includegraphics[width=6cm]{Bilder/Neo4j_Abhängigkeiten.jpg}
+    \caption{Challenges mit Abhängigkeiten}
+    \label{fig:bild2}
+  \end{minipage}
+\end{figure}
 
 \subsubsection*{4. Neo4j Test}
 
 Hab die ersten Test \texttt{Challenge}-Knoten angelegt und abgefragt. Dabei habe ich drei Challenges \texttt{Linux CLI Grundlagen}, \texttt{Dateien und Ordner verwalten} und \texttt{Makefile Grundlagen} als Knoten angezeigt.
+\\
+Danach habe ich die Beziehungen mit \texttt{BUILDS\_ON} geprüft. Es zeigt, dass \texttt{Makefile Grundlagen} auf \texttt{Dateien und Ordner verwalten} aufbaut und \texttt{Dateien und Ordner verwalten} wiederum auf \texttt{Linux CLI Grundlagen} verweist.
 
-Danach habe ich die Beziehungen mit \texttt{BUILDS_ON} geprüft. Es zeigt, dass \texttt{Makefile Grundlagen} auf \texttt{Dateien und Ordner verwalten} aufbaut und \texttt{Dateien und Ordner verwalten} wiederum auf \texttt{Linux CLI Grundlagen} verweist.
-
-SO hatte ich die Struktur getestet und die Abhängigkeiten wurden sichtbar.
-
-\section*{JSON-Struktur für den Graph}
+\subsubsection{JSON-Struktur für den Graph}
 
 Damit man den STEMgraph später als Graph erkennen kann, brauche ich ein JSON, das
 genau zu meinem Datenmodell passt. Ich habe mir das so aufgebaut:
@@ -81,36 +90,23 @@ genau zu meinem Datenmodell passt. Ich habe mir das so aufgebaut:
 \begin{verbatim}
 {
   "nodes": [
-    {
-      "id": "7392771207492170471730773974971",
-      "teaches": "Linux CLI Grundlagen",
-      "keywords": ["linux", "cli"]
-    },
-    {
-      "id": "27498625678403678296478352674894",
-      "teaches": "Dateien und Ordner verwalten",
-      "keywords": ["linux", "files", "mkdir"]
-    },
-    {
-      "id": "23684937628947256748937849374783",
-      "teaches": "Makefile Grundlagen",
-      "keywords": ["makefile", "buildsystem"]
-    }
+    { "id": "7392771207492170471730773974971",
+      "teaches": "Linux CLI Grundlagen", "keywords": ["linux", "cli"] },
+    { "id": "27498625678403678296478352674894",
+      "teaches": "Dateien und Ordner verwalten", "keywords": ["linux", "files", "mkdir"] },
+    { "id": "23684937628947256748937849374783",
+      "teaches": "Makefile Grundlagen", "keywords": ["makefile", "buildsystem"] }
   ],
   "edges": [
-    {
-      "source": "7392771207492170471730773974971",
-      "target": "27498625678403678296478352674894"
-    },
-    {
-      "source": "27498625678403678296478352674894",
-      "target": "23684937628947256748937849374783"
-    }
+    { "source": "7392771207492170471730773974971",
+      "target": "27498625678403678296478352674894" },
+    { "source": "27498625678403678296478352674894",
+      "target": "23684937628947256748937849374783" }
   ]
 }
 \end{verbatim}
-
 Die \texttt{nodes} sind die Challenges mit meinen Feldern \texttt{id}, \texttt{teaches} und \texttt{keywords}.
+\\
 Die \texttt{edges} sind die Abhängigkeiten und bilden \texttt{depends\_on} ab, indem eine
 Challenge als \texttt{source} und die Challenge, die darauf aufbaut, als \texttt{target}
 eingetragen wird.
