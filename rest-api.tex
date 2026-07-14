@@ -1,0 +1,36 @@
+\section{REST-API}
+
+REST-API ist ein Programmierschnittstelle, für Systemen um über das HTTP-Protokoll Daten auszutauschen, . [file:25]
+Sie bieten einen standardisierten Austausch von Daten wie: [file:25]
+
+\begin{itemize}
+\item HTTP-Methoden(Verben): \texttt{GET}, \texttt{POST}, \texttt{PUT}, \texttt{DELETE} [file:25]
+\item HTTP-Statuscodes: [file:25]
+\begin{itemize}
+\item 2xx(Erfolg) z.B. 200 Ok, 201 Created [file:25]
+\item 4xx(Client Fehler) z.B. 400 Bad Request, 404 - Not Found [file:25]
+\item 5xx(Server Fehler) z.B. 500 Internal Server Error [file:25]
+\end{itemize}
+\end{itemize}
+
+Die Daten werden meist im kompakten JSON-Format übertragen. [file:25]
+
+Sie sind gut erweiterbar im Code und auch Architektonisch skalierbar da sie keine Informationen in Variablen speichern, die denn Output von Request auf die API beeinflussen, der gleiche Input führt immer zum gleichen Output. [file:25]
+
+In modernen Softwarearchitekturen skaliert man häufig auch über die Nutzung von Container [file:25]
+
+Ein Request besteht aus vier Teilen wie: [file:25]
+
+\begin{itemize}
+\item Endpunkt - manche nehmen auch einen Pathparameter mit rein [file:25]
+\item Operation - \texttt{GET}, \texttt{POST}, \texttt{PUT}, \texttt{DELETE} [file:25]
+\item Body - Enthält die Dateninformationen die geschickt werden [file:25]
+\item Header - Für Meta-Informationen wie einen Token oder API-Key zur Authentifizierung [file:25]
+\end{itemize}
+
+Nach dem Request antwortet der Server mit einem Response: [file:25]
+
+\begin{itemize}
+\item Erhält man die gewünschte Daten Information [file:25]
+\item Einen Statuscode aus 3 Ziffern z.B. 2xx, 4xx, 5xx [file:25]
+\end{itemize}
