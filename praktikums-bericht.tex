@@ -449,7 +449,7 @@ Danach habe ich eine neue Datei \texttt{JSON Struktur Notiz} für die Skizzierun
   \item Die Abhängigkeiten als \texttt{edges} über \texttt{source} und \texttt{target} abgebildet, damit später ein Graph-View im STEMgraph-Frontend möglich ist.
 \end{itemize}
 
-\subsection{Neo4j-Graphmodell und JSON-Strukturierung}
+\subsection{Neo4j-Graphmodell, JSON-Strukturierung und Fehlerbehebung der Abhängigkeiten}
 \subsubsection{06.07.26 - Montag}
 
 hatte ich dann gestartet in der CLI das \texttt{Bash-Script} auszuführen und mir die \texttt{graph-data.json} bauen zulassen. Dabei fiel mir auf:
@@ -459,4 +459,47 @@ hatte ich dann gestartet in der CLI das \texttt{Bash-Script} auszuführen und mi
   \item hab meinen Chef gefragt ob das gewollt ist oder ob ich die weglassen soll 
 \end{itemize}
 
-Hab dann weiter gemacht mit der \texttt{JSON Struktur Notiz} und fertiggestellt um sie in die Test Doku einzufügen
+Hab dann weiter gemacht mit der \texttt{JSON Notiz} und fertiggestellt um sie in die Test Doku einzufügen
+
+\subsubsection{07.07.26 - Dienstag}
+
+war die nächste Aufgabe die Fehlerhaften \texttt{depends\_on} in den Repo README.md zu fixen, dafür sollte ich die:
+
+\begin{itemize}
+  \item ich sollte für jedes Repo eine neues Issues auf Englisch anlegen in dem ich erkläre was denn genau in dem Repo fehlerhaft sei
+  \item dann sollte ich mir die repos forken und lokal klonen um sie bearbeiten zu können
+\end{itemize}
+
+Hab dann jede README durchgesehen um die passenden  Abhängigkeit zu finden für die jeweiligen \texttt{depends\_on} in denn Repos dabei habe ich für 5 Repos passende \texttt{depend\_on} finden können und für zwei gar nicht und eins konnte ich teilweise lösen
+
+\subsubsection{08.07.26 - Mittwoch}
+
+da ich Dienstag die passenden Abhängigkeiten hatte hab ich mir dann jedes Repo einzeln geholt und hab:
+
+\begin{itemize}
+  \item einen eigenen Branch gesetzt \texttt{fix-depends-on}
+  \item hab die passende UUID in die \texttt{depends\_on} gesetzt 
+  \item commit \& push
+  \item und dann denn Pull Request für die 5...
+\end{itemize}
+
+Für die README ohne Json Block habe ich einen Json-Block angelegt so weit ich alles eintragen konnte, eine README konnte ich teilweise fixen habe ich commitet \% gepushed ohne Pull-Request und die README wo ich keine Abängigkeiten finden konnte habe ich nur geklont
+
+\subsubsection{09.07.26 - Donnerstag}
+
+Hatte ich dann gefragt gehabt wie denn die drei am besten fixen kann , darauf war die Anweisung er muss es selbst beheben da die noch unklar sind, bis dahin war die nächste Aufgabe:
+
+\begin{itemize}
+  \item mir Tutorials zu Docker anzugucken 
+  \item und mir Videos zu Angular anzugucken und mich schon mal damit vertraut zu machen  
+\end{itemize}
+
+\subsubsection{10.07.26 - Freitag}
+
+hatte ich mich noch mehr mit Docker beschäftigt da ich einen eigenen Server habe hatte ich schon etwas Vorkenntnisse, und das hatte sich direkt angeboten mich in diesem Umfeld noch mehr damit vertraut zu machen und nachzuvollziehen was Docker ist und in welchen Szenarien man es am besten nutzt
+
+Hatte mir heute auch ein Video angesehen wo man das benutzen von Angular selber ausprobieren kann mit viel HTML dazwischen:
+
+\begin{verbatim}
+https://youtu.be/FAtFMgodaPc?si=xk-LEOMt0-v5HXdk
+\end{verbatim}
