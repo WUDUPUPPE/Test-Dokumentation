@@ -503,3 +503,175 @@ Hatte mir heute auch ein Video angesehen wo man das benutzen von Angular selber 
 \begin{verbatim}
 https://youtu.be/FAtFMgodaPc?si=xk-LEOMt0-v5HXdk
 \end{verbatim}
+
+\subsubsection{10.07.26 - Freitag}
+
+hatte ich mich noch mehr mit Docker beschäftigt da ich einen eigenen Server habe hatte ich schon etwas Vorkenntnisse, und das hatte sich direkt angeboten mich in diesem Umfeld noch mehr damit vertraut zu machen und nachzuvollziehen was Docker ist und in welchen Szenarien man es am besten nutzt
+
+Hatte mir heute auch ein Video angesehen wo man das benutzen von Angular selber ausprobieren kann mit viel HTML dazwischen:
+
+\begin{verbatim}
+https://youtu.be/FAtFMgodaPc?si=xk-LEOMt0-v5HXdk
+\end{verbatim}
+
+\subsection{Entscheidungsmatrix, Graph-Datenfix und erste Endpunkt-Planung}
+\subsubsection{13.07.26 - Montag}
+
+war die Aufgabe erstmal so mit der \texttt{graph-data.json} weiter zuarbeiten und was noch offen war zu erledigen dafür habe ich geguckt was es für relevante Kriterien in meinem Projekt gibt um sie in die Entscheidungsmatrix zupacken
+
+\subsubsection{14.07.26 - Dienstag}
+
+war der Plan erstmal mit der Entscheidungsmatrix zu starten da das noch eine offene Aufgabe war die zu erledigen war:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{2cm}|p{6.5cm}|p{6.5cm}|}
+\hline
+\textbf{Kriterium} & \textbf{Crawlen -> Json -> Neo4j -> Frontend nutzt Neo4j direkt} & \textbf{Crawlen -> Json -> REST-API liefert JSON für den Graphen} \\
+\hline
+Komplexität & Hoch - Frontend muss Cypher/Neo4j kennen & Gering - Frontend spricht nur HTTP \\
+\hline
+Flexiblität & Hoch - Datenbankwechsel ist schwieriger & Gering - Backend austausch bar \\
+\hline
+Sicherheit & Datenbank ist direkt sichtbar & Datenbank ist hinter der API versteckt \\
+\hline
+Wartbarkeit & Weniger Schichten & Klare Trennung (Separation of Concerns) \\
+\hline
+\end{tabular}
+\end{table}
+
+Also meine Wahl war eigentlich die 1.Option da es einfacher für mich wäre, ohne zusätzliches Wissen umzusetzen.
+
+Dann hatte ich das \texttt{export\_graph\_data.sh} Bash-Script so umgebaut das man jetzt auch denn Author und das Erstellunsgdatum mit exportiert und im Frontend bereitstellen kann.
+
+\subsubsection{15.07.26 - Mittwoch}
+
+musste ich da in einer Challenge noch ein Fehler war denn beheben in der Challenge 68ffd stand im teaches block der titel so:
+
+\begin{itemize}
+\item "Understanding the Stack in x86\_64 Assembly" mit Backslash was zu einem Fehler führte, hatte es intern erstmal nur gefixed und schreibe jetzt eine Issues und mache dann einen Pull-Request
+\end{itemize}
+
+Danch hatte ich noch mal das \texttt{export\_grah\_data.sh} Bash-Script ausgeführt um die korrigierte \texttt{graph-data.json} zu benutzen um mit APOC in Neo4j zuladen, da APOC JSON direkt parsen kann:
+
+\begin{itemize}
+\item Nodes über die id angelegt
+\item und die Beziehungen über \texttt{source} und \texttt{target} verbunden
+\end{itemize}
+
+\subsubsection{16.07.26 - Donnerstag}
+
+hab denn Betreuer von dem fehlerhaften \texttt{teaches} Eintrag informiert gehabt und danach hab ich mit denn Endpunkten gestartet und geguckt was am meisten sinn macht und was man brauchen könnte dabei kam raus:
+
+\begin{itemize}
+\item \texttt{GET /health}
+\item \texttt{GET /graph}
+\item \texttt{GET /challenges}
+\item \texttt{GET /challenges/\{id\}}
+\item \texttt{GET /subgraph?start=\{A\}\&end=\{B\}}
+\item \texttt{GET /keywords}
+\end{itemize}
+
+aber dachte mir das kann ja nicht alles sein und habt etwas rechachiert was man so gänging nutzt bzw was ich in meinem fall denn alles so machen könnte
+
+\subsubsection{17.07.26 - Freitag}
+
+hatte ich weiter gemacht und geguckt was denn noch so gesetzt werden kann als endpoint:
+
+\begin{itemize}
+\item \texttt{GET /health}: zur Prüfung ob die FastAPI läuft und Neo4j erreichbar ist
+\item \texttt{GET /graph}: Gesamter Graph
+\item \texttt{GET /challenges}: Gesamter Graph
+\item \texttt{GET /challenges/\{id\}}: Detaillierte Ansicht einer Challenge
+\item \texttt{GET /subgraph?start=\{A\}\&end=\{B\}}: liefert nur denn relevanten Graph zwischen denn beiden Knoten
+\item \texttt{GET /keywords}: zeigt alle Keywords
+
+\item \texttt{GET /challenges/\{id\}/depends-on?format=list}: alle abhängigen Challenges als Liste
+\item \texttt{GET /challenges/\{id\}/depends-on?format=tree}: alle abhängigen Challenges als Baum
+\item \texttt{GET /challenges/\{id\}/neighbors}: ist für Frontend um direkt Vorgänger und Nachfolger anzuzeigen ohne denn gesamten Graph zu laden
+\item \texttt{GET /keywords/\{keyword\}/challenges}: gibt mir alle Challenges mit dem gewählten Keyword
+\item \texttt{POST /admin/update-challenges}: ist für denn Adminbereich um die Challenges neu zuladen bzw. um sie updaten und dann direkt als json umwandelt
+\end{itemize}
+
+\subsection{Projektantrag und Aufbau der STEMgraph-API}
+\subsubsection{20.07.26 - Montag}
+
+hatte ich einen Schultag bei dem es darum ging uns noch mal anzugucken wie wir einen Projektantrag umsetzten was wir beachten sollten und bis wann wir ihn Fertig haben sollten
+
+\begin{itemize}
+\item hab mir dafür noch mal die Unterlagen angeguckt und verinnerlicht
+\item dann schon mal gestartet denn Projektantrag wieder mit LaTeX aufzusetzen
+\item als nächste hatte ich die Erste Seite des Antrags geguckt wie ich sie Strukturiere
+\end{itemize}
+
+\subsubsection{21.07.26 - Dienstag}
+
+hab ich mich ran gesetzt die API umzusetzen dafür habe ich erstmal:
+
+\begin{itemize}
+\item die Ordnerstruktur festgelegt bzw geguckt was ich brauchen könnte
+\end{itemize}
+
+\begin{verbatim}
+        stemgraph-api/
+        |-- app/
+        |   |-- main.py
+        |   |-- STEMgraphAPI.py
+        |   |-- api/
+        |   |   |-- graph.py
+        |   |   |-- challenges.py
+        |   |   |-- keywords.py
+        |   |   +-- admin.py
+        |   +-- service/
+        |       +-- neo4j_client.py
+        |-- requirements.txt
+        |-- Dockerfile
+        |-- docker-compose.yml
+        +-- .env
+\end{verbatim}
+
+\begin{itemize}
+\item hab dann gestartet mir bestehende Lösungen anzugucken und diese zu nutzen um die API zubauen
+\end{itemize}
+
+\subsubsection{22.07.26 - Mittwoch}
+
+war ich dann dabei die API weiter einzurichten und sinnvoll zu modellieren um sie wenn nötig zu erweitern
+
+\begin{itemize}
+\item hab dann denn Code so gut ich konnte optimiert und verkleinert
+\item dann hatte ich denn Container aktiviert und getestet ob denn jeder endpunkt funktioniert was natürlich nicht sofort klappte
+\end{itemize}
+
+\subsubsection{23.07.26 - Donnerstag}
+
+wollte ich dann endlich das die API ohne Fehler funktioniert was soweit erstml geklappt hat
+
+\begin{itemize}
+\item dann hab ich einen Termin ausgemacht gehabt um einmal alles anzuschauen
+\end{itemize}
+
+als nächstes habe ich denn Projektantrag weiter gemacht
+
+\subsubsection{24.07.26 - Freitag}
+
+wurde dann auch der Projektantrag weiter ausgearbeitet um eine gute Basis zu schaffen
+
+\subsection{}
+\subsubsection{27.07.26 - Montag}
+
+erst hatte ich denn Antrag weiter ausarbeitet, hatte dann dass Gespräch zu der API dabei kam raus das
+
+\begin{itemize}
+\item der Port in der compose im neo4j noch offen ist was ja nicht sein sollte
+\item das ich denn Code besser typisiere um direkt zu sehen was welcher Datentyp ist um nicht alles zu debuggen
+\item und das es besser wäre mit \texttt{venv} zuarbeiten da ich dort die dependencies für jedes Projekt seperat anlegen kann und nicht im global alles installieren zumüssen
+\end{itemize}
+
+dann hab ich mich damit beschäftigt erstmal die Virtuelle Umgebung einzurichten
+
+\begin{verbatim}
+https://docs.python.org/3.11/tutorial/venv.html
+\end{verbatim}
+
+\subsubsection{28.07.26 - Dienstag}
